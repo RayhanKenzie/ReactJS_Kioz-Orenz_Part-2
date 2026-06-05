@@ -1,10 +1,26 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { kiosData, infoUmum } from '../data/kiosData'
+import unit1Img from '../assets/unit-1-green_black.jpg'
+import unit2Img from '../assets/unit-2_and_3-orange.jpg'
+import unit3Img from '../assets/unit-3-orange.jpg'
+import unit4Img from '../assets/unit-4-glass_door.jpg'
+
 
 function KiosList() {
   const [floorFilter, setFloorFilter] = useState('all')
   const [sortBy, setSortBy] = useState('default')
+
+  // Image mapper for Floor 1 units
+  const getKiosImage = (id) => {
+    switch (id) {
+      case 1: return unit1Img
+      case 2: return unit2Img
+      case 3: return unit3Img
+      case 4: return unit4Img
+      default: return unit1Img
+    }
+  }
 
   // Helper to parse size string and calculate numeric area
   const getArea = (ukuran) => {
@@ -104,140 +120,167 @@ function KiosList() {
               onChange={(e) => setSortBy(e.target.value)}
               className="bg-stone-100 hover:bg-stone-200/80 text-stone-700 font-semibold px-3 py-2 rounded-xl text-xs border-none focus:outline-none focus:ring-2 focus:ring-orange-500 cursor-pointer"
             >
-              <option value="default">Default (ID Unit)</option>
+              <option value="default">Default (Berurutan)</option>
               <option value="size-asc">Terkecil ke Terbesar</option>
               <option value="size-desc">Terbesar ke Terkecil</option>
             </select>
           </div>
-        </div>
-
-        {/* Catalog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {sortedKios.map((kios, idx) => {
+        </div>        {/* Catalog Scroll List */}
+        <div className="flex flex-row overflow-x-auto gap-6 pb-4 snap-x snap-mandatory">
+          {sortedKios.map((kios) => {
             const isLarge = kios.ukuran.includes('4') // detect 3.5x4
             return (
               <div
                 key={kios.id}
-                className="bg-white border border-stone-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-300 flex flex-col justify-between animate-fade-in-up"
-                style={{ animationDelay: `${idx * 0.1}s` }}
+                className="bg-white border border-stone-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:border-orange-200 transition-all duration-300 flex flex-col justify-between min-w-[320px] min-h-[500px] shrink-0 snap-start"
               >
                 
-                {/* SVG Blueprint Mock Illustration */}
-                <div className="h-48 bg-stone-50 border-b border-stone-100 flex items-center justify-center p-6 relative overflow-hidden group">
-                  {/* Grid overlay background */}
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:16px_16px] opacity-40"></div>
-                  
-                  {/* Outer blueprint border */}
-                  <div className="relative w-full max-w-[280px] h-32 border-2 border-dashed border-orange-300 bg-orange-50/20 rounded-lg p-2.5 flex flex-col justify-between shadow-inner">
-                    {/* Dimension tags */}
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-2 py-0.5 border border-stone-200 rounded-md text-[9px] font-bold text-stone-500 tracking-wider">
-                      {isLarge ? "LEBAR: 3.5m / PANJANG: 4m" : "LEBAR: 3.5m / PANJANG: 3.5m"}
-                    </div>
-
-                    <div className="flex justify-between items-start">
-                      {/* Room identification */}
-                      <span className="text-[11px] font-extrabold text-orange-600 bg-orange-100 px-2 py-0.5 rounded">
-                        UNIT {kios.id}
+                {/* Card Top: Photo or SVG Blueprint */}
+                {kios.lantai === 1 ? (
+                  /* Real photo for Floor 1 units */
+                  <div className="h-[280px] w-full overflow-hidden relative group shrink-0 border-b border-stone-100">
+                    <img 
+                      src={getKiosImage(kios.id)} 
+                      alt={`Kios Unit ${kios.id}`} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Status & Floor Badges Overlay */}
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                      <span className="bg-emerald-950/80 backdrop-blur-xs text-emerald-400 text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider flex items-center gap-1 shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+                        {kios.status}
                       </span>
-                      {/* Bathroom Mock */}
-                      <div className="w-10 h-10 border border-stone-300 bg-stone-100 rounded flex items-center justify-center text-[8px] font-bold text-stone-500">
-                        KM/WC
+                      <span className="bg-orange-950/80 backdrop-blur-xs text-orange-400 text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm">
+                        Lantai {kios.lantai}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  /* SVG Blueprint Mock Illustration for Floor 2 units */
+                  <div className="h-[280px] bg-stone-50 border-b border-stone-100 flex items-center justify-center p-6 relative overflow-hidden group shrink-0">
+                    {/* Grid overlay background */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:16px_16px] opacity-40"></div>
+                    
+                    {/* Outer blueprint border */}
+                    <div className="relative w-full max-w-[280px] h-32 border-2 border-dashed border-orange-300 bg-orange-50/20 rounded-lg p-2.5 flex flex-col justify-between shadow-inner">
+                      {/* Dimension tags */}
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-2 py-0.5 border border-stone-200 rounded-md text-[9px] font-bold text-stone-500 tracking-wider">
+                        {isLarge ? "LEBAR: 3.5m / PANJANG: 4m" : "LEBAR: 3.5m / PANJANG: 3.5m"}
+                      </div>
+
+                      <div className="flex justify-between items-start">
+                        {/* Room identification */}
+                        <span className="text-[11px] font-extrabold text-orange-600 bg-orange-100 px-2 py-0.5 rounded">
+                          UNIT {kios.nomor}
+                        </span>
+                        {/* Bathroom Mock */}
+                        <div className="w-10 h-10 border border-stone-300 bg-stone-100 rounded flex items-center justify-center text-[8px] font-bold text-stone-500">
+                          KM/WC
+                        </div>
+                      </div>
+
+                      {/* Rolling door indicator */}
+                      <div className="w-full flex items-center justify-center gap-1 mt-auto">
+                        <div className="h-1 bg-orange-600 rounded flex-1"></div>
+                        <span className="text-[7.5px] font-extrabold text-orange-600 tracking-widest uppercase">
+                          ROLLING DOOR
+                        </span>
+                        <div className="h-1 bg-orange-600 rounded flex-1"></div>
                       </div>
                     </div>
 
-                    {/* Rolling door indicator */}
-                    <div className="w-full flex items-center justify-center gap-1 mt-auto">
-                      <div className="h-1 bg-orange-600 rounded flex-1"></div>
-                      <span className="text-[7.5px] font-extrabold text-orange-600 tracking-widest uppercase">
-                        ROLLING DOOR
+                    {/* Status & Floor Badges Overlay */}
+                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                      <span className="bg-emerald-950/80 backdrop-blur-xs text-emerald-400 text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider flex items-center gap-1 shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+                        {kios.status}
                       </span>
-                      <div className="h-1 bg-orange-600 rounded flex-1"></div>
+                      <span className="bg-orange-950/80 backdrop-blur-xs text-orange-400 text-[9px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm">
+                        Lantai {kios.lantai}
+                      </span>
                     </div>
                   </div>
-                </div>
+                )}
 
                 {/* Card Content */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    {/* Status & Floor Badges */}
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse"></span>
-                        {kios.status}
-                      </span>
-                      <span className="bg-orange-50 text-orange-700 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">
-                        Lantai {kios.lantai}
-                      </span>
-                    </div>
-
                     {/* Title Specs */}
-                    <h3 className="font-extrabold text-xl text-stone-900 mb-1">
-                      Kios Unit {kios.id} ({kios.ukuran})
+                    <h3 className="font-extrabold text-lg text-stone-900 mb-0.5">
+                      Kios Unit {kios.nomor}
                     </h3>
-                    <p className="text-stone-400 text-xs mb-5">
-                      Lokasi: {infoUmum.lokasi} (Lantai {kios.lantai})
+                    <p className="text-stone-400 text-xs mb-4">
+                      Dimensi: {kios.ukuran}
                     </p>
+                    {kios.catatan && (
+                      <div className="bg-orange-50 border border-orange-100/70 rounded-xl p-3 mb-4 text-[10.5px] text-orange-950 font-medium leading-relaxed flex items-start gap-2">
+                        <svg className="w-4 h-4 text-orange-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{kios.catatan}</span>
+                      </div>
+                    )}
 
                     {/* Facilities Checklist */}
-                    <ul className="grid grid-cols-2 gap-3 text-xs text-stone-600 mb-6 pb-6 border-b border-stone-100">
-                      <li className="flex items-center gap-2">
-                        <span className="text-emerald-500 font-bold text-sm">✓</span> Kamar Mandi Dalam
+                    <ul className="grid grid-cols-2 gap-2 text-[11px] text-stone-600 mb-5 pb-5 border-b border-stone-100">
+                      <li className="flex items-center gap-1.5">
+                        <span className="text-emerald-500 font-bold text-xs">✓</span> Mandi Dalam
                       </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-emerald-500 font-bold text-sm">✓</span> Listrik 900 Watt
+                      <li className="flex items-center gap-1.5">
+                        <span className="text-emerald-500 font-bold text-xs">✓</span> Listrik 900W
                       </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-emerald-500 font-bold text-sm">✓</span> Air Tanah Bersih
+                      <li className="flex items-center gap-1.5">
+                        <span className="text-emerald-500 font-bold text-xs">✓</span> Air Tanah
                       </li>
-                      <li className="flex items-center gap-2">
-                        <span className="text-emerald-500 font-bold text-sm">✓</span> Akses Parkir Motor
+                      <li className="flex items-center gap-1.5">
+                        <span className="text-emerald-500 font-bold text-xs">✓</span> Parkir Motor
                       </li>
                     </ul>
 
                     {/* Price Showcase */}
-                    <div className="flex items-baseline justify-between mb-6">
+                    <div className="flex flex-col gap-1 mb-5">
                       <div>
-                        <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Biaya Sewa</p>
-                        <p className="text-2xl font-extrabold text-orange-600 mt-0.5">
+                        <p className="text-[9px] text-stone-400 font-bold uppercase tracking-wider">Bulanan</p>
+                        <p className="text-lg font-extrabold text-orange-600 leading-none mt-1">
                           {new Intl.NumberFormat('id-ID', {
                             style: 'currency',
                             currency: 'IDR',
                             maximumFractionDigits: 0
                           }).format(infoUmum.harga.perBulan)}
-                          <span className="text-stone-400 text-xs font-normal"> / bln</span>
+                          <span className="text-stone-400 text-[10px] font-normal"> / bln</span>
                         </p>
                       </div>
-                      <div className="text-right">
-                        <p className="text-[9px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold uppercase tracking-wide inline-block">
+                      <div className="mt-2 pt-2 border-t border-dashed border-stone-100 flex justify-between items-center">
+                        <span className="text-[9px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded font-bold uppercase tracking-wide">
                           Opsi Tahunan
-                        </p>
-                        <p className="text-sm font-semibold text-stone-700 mt-1">
+                        </span>
+                        <p className="text-xs font-bold text-stone-700">
                           {new Intl.NumberFormat('id-ID', {
                             style: 'currency',
                             currency: 'IDR',
                             maximumFractionDigits: 0
                           }).format(infoUmum.harga.perTahun)}
-                          <span className="text-stone-400 text-[10px] font-normal"> / thn</span>
+                          <span className="text-stone-400 text-[9px] font-normal"> / thn</span>
                         </p>
                       </div>
                     </div>
                   </div>
 
                   {/* Actions */}
-                  <div className="grid grid-cols-2 gap-3 mt-4">
+                  <div className="grid grid-cols-2 gap-2 mt-2 shrink-0">
                     <Link
                       to={`/waiting-list?unit=${kios.id}`}
-                      className="bg-stone-100 hover:bg-stone-200/80 text-stone-800 font-semibold py-3 rounded-xl text-center text-xs transition duration-300 cursor-pointer"
+                      className="bg-stone-100 hover:bg-stone-200/80 text-stone-850 font-bold py-2.5 rounded-xl text-center text-[10px] transition duration-300 cursor-pointer"
                     >
-                      Daftar Waiting List
+                      Waiting List
                     </Link>
                     <a
                       href={getWAMessage(kios)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 rounded-xl text-center text-xs transition duration-300 shadow-md shadow-orange-600/10 cursor-pointer"
+                      className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2.5 rounded-xl text-center text-[10px] transition duration-300 shadow-md shadow-orange-600/10 cursor-pointer"
                     >
-                      Hubungi Pemilik
+                      Sewa via WA
                     </a>
                   </div>
                 </div>

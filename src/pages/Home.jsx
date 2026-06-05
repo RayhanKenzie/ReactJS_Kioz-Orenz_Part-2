@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { infoUmum } from '../data/kiosData'
+import heroBg from '../assets/kios-hero.jpg'
+
 
 function Home() {
   const [activeFaq, setActiveFaq] = useState(null)
@@ -55,62 +57,149 @@ function Home() {
     return icons[idx] || icons[3]
   }
 
+  const listFasilitas = [
+    {
+      nama: "Kamar Mandi Dalam",
+      desc: "Kamar mandi pribadi bersih tersedia di dalam setiap unit kios demi kenyamanan dan higienitas usaha Anda.",
+      icon: (
+        <svg className="w-6 h-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        </svg>
+      ),
+      span: "col-span-3 md:col-span-2",
+      padding: "p-8",
+      minHeight: "min-h-[200px]"
+    },
+    {
+      nama: "Listrik 900 Watt",
+      desc: "Setiap unit kios difasilitasi meteran listrik prabayar token mandiri.",
+      icon: (
+        <svg className="w-6 h-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
+      span: "col-span-3 md:col-span-1",
+      padding: "p-6",
+      minHeight: "min-h-[140px]"
+    },
+    {
+      nama: "Sumber Air Bersih",
+      desc: "Akses sumur bor air tanah lancar dan jernih untuk operasional harian.",
+      icon: (
+        <svg className="w-6 h-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M20 13c0 5-3.5 7-8 7s-8-2-8-7c0-4.3 4-8.5 8-12 4 3.5 8 7.7 8 12z" />
+        </svg>
+      ),
+      span: "col-span-3 md:col-span-1",
+      padding: "p-6",
+      minHeight: "min-h-[140px]"
+    },
+    {
+      nama: "Keamanan Terjamin",
+      desc: "Lingkungan ruko yang kondusif, bersih, aman, serta terpantau bebas dari premanisme demi kenyamanan kelancaran usaha Anda.",
+      icon: (
+        <svg className="w-6 h-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      ),
+      span: "col-span-3 md:col-span-2",
+      padding: "p-8",
+      minHeight: "min-h-[200px]"
+    },
+    {
+      nama: "Halaman Parkir Luas",
+      desc: "Tersedia area parkir sepeda motor yang lapang dan aman di depan kios, memudahkan para pelanggan setia untuk berkunjung langsung ke tempat usaha Anda.",
+      icon: (
+        <svg className="w-6 h-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 20V4h6a5 5 0 010 10H9" />
+        </svg>
+      ),
+      span: "col-span-3 md:col-span-3",
+      padding: "p-8",
+      minHeight: "min-h-[160px]",
+      isWide: true
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-[#FFFBF5]">
       {/* Hero Section */}
-      <section className="relative px-4 py-20 md:py-32 overflow-hidden bg-gradient-to-br from-stone-900 via-stone-800 to-orange-950 text-white">
-        {/* Background decorative blob */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <section className="relative px-4 py-20 md:py-32 overflow-hidden text-white min-h-[550px] flex items-center">
+        {/* Background Image with object-cover and object-center */}
+        <img 
+          src={heroBg} 
+          alt="Kioz Orenz Hero" 
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+        />
+        {/* Overlay bg-stone-900/60 */}
+        <div className="absolute inset-0 bg-stone-900/65 pointer-events-none"></div>
 
-        <div className="max-w-5xl mx-auto text-center relative z-10 animate-fade-in-up">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-orange-600/20 text-orange-400 border border-orange-500/20 mb-6 tracking-wide uppercase">
-            ⚡ Lokasi Strategis di Depok
-          </span>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-            Kembangkan Bisnis Anda di <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">
-              Kioz Orenz
-            </span>
-          </h1>
-          
-          <p className="text-base sm:text-lg md:text-xl text-stone-300 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-            Ruang usaha premium, bersih, dan aman di Depok. Sangat ideal untuk ekspansi bisnis kuliner, jasa, kecantikan, maupun retail di kawasan padat penduduk.
-          </p>
+        {/* Decorative blob with reduced opacity */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-600/5 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Link
-              to="/kios"
-              className="w-full sm:w-auto bg-orange-600 hover:bg-orange-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-orange-600/20 hover:shadow-orange-600/30 transition-all duration-300"
-            >
-              Lihat Unit Kios
-            </Link>
-            <Link
-              to="/waiting-list"
-              className="w-full sm:w-auto bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/30 font-semibold px-8 py-3.5 rounded-xl backdrop-blur-sm transition-all duration-300"
-            >
-              Gabung Waiting List
-            </Link>
-          </div>
+        <div className="max-w-6xl mx-auto w-full relative z-10 animate-fade-in-up">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Kolom Kiri (60%) */}
+            <div className="lg:col-span-7 space-y-6 text-left">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-orange-600/20 text-orange-400 border border-orange-500/20 tracking-wide uppercase">
+                ⚡ Lokasi Strategis di Depok
+              </span>
+              
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                Kembangkan Bisnis <br />Anda di{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">
+                  Kioz Orenz
+                </span>
+              </h1>
+              
+              <p className="text-base sm:text-lg text-stone-300 max-w-xl leading-relaxed font-light">
+                Ruang usaha premium, bersih, dan aman di Depok. Sangat ideal untuk ekspansi bisnis kuliner, jasa, kecantikan, maupun retail di kawasan padat penduduk.
+              </p>
 
-          {/* Quick Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto pt-8 border-t border-white/10">
-            <div className="text-center">
-              <p className="text-3xl md:text-4xl font-extrabold text-orange-500">4</p>
-              <p className="text-xs text-stone-400 mt-1 uppercase tracking-wider">Pilihan Kios</p>
+              <div className="flex flex-col sm:flex-row gap-4 items-center pt-2">
+                <Link
+                  to="/kios"
+                  className="w-full sm:w-auto text-center bg-orange-600 hover:bg-orange-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-orange-600/20 hover:shadow-orange-600/30 transition-all duration-300 cursor-pointer"
+                >
+                  Lihat Unit Kios
+                </Link>
+                <Link
+                  to="/waiting-list"
+                  className="w-full sm:w-auto text-center bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/30 font-semibold px-8 py-3.5 rounded-xl backdrop-blur-sm transition-all duration-300 cursor-pointer"
+                >
+                  Gabung Waiting List
+                </Link>
+              </div>
             </div>
-            <div className="text-center border-l border-white/10">
-              <p className="text-3xl md:text-4xl font-extrabold text-orange-500">Rp 1,5Jt</p>
-              <p className="text-xs text-stone-400 mt-1 uppercase tracking-wider">Harga per Bulan</p>
+
+            {/* Kolom Kanan (40%) with Stats Grid */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="w-full max-w-md bg-stone-900/80 backdrop-blur-md border border-stone-700/50 p-6 sm:p-8 rounded-3xl text-white shadow-2xl">
+                <h3 className="font-extrabold text-sm uppercase tracking-wider text-orange-500 mb-6 border-b border-white/10 pb-3">
+                  Informasi Utama Kios
+                </h3>
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-1">
+                    <p className="text-3xl font-extrabold text-orange-500">4</p>
+                    <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Pilihan Kios</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-3xl font-extrabold text-orange-500">Rp 1,5Jt</p>
+                    <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Mulai per Bulan</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-3xl font-extrabold text-orange-500">24 Jam</p>
+                    <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Akses Angkutan</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-3xl font-extrabold text-orange-500">900W</p>
+                    <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Daya Listrik</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="text-center border-l border-white/10">
-              <p className="text-3xl md:text-4xl font-extrabold text-orange-500">24 Jam</p>
-              <p className="text-xs text-stone-400 mt-1 uppercase tracking-wider">Akses Transportasi</p>
-            </div>
-            <div className="text-center border-l border-white/10">
-              <p className="text-3xl md:text-4xl font-extrabold text-orange-500">900W</p>
-              <p className="text-xs text-stone-400 mt-1 uppercase tracking-wider">Daya Listrik / Kios</p>
-            </div>
+
           </div>
         </div>
       </section>
@@ -163,20 +252,39 @@ function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {infoUmum.fasilitas.map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-center gap-4 bg-white border border-stone-200/50 p-6 rounded-2xl shadow-sm hover:translate-y-[-2px] transition-all duration-300"
-              >
-                <div className="w-11 h-11 bg-orange-100 rounded-xl flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
-                  </svg>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {listFasilitas.map((item, idx) => {
+              if (item.isWide) {
+                return (
+                  <div
+                    key={idx}
+                    className={`${item.span} ${item.padding} ${item.minHeight} bg-white border border-stone-200/60 rounded-2xl shadow-sm hover:translate-y-[-2px] transition-all duration-300 flex flex-col md:flex-row md:items-center gap-6`}
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center shrink-0">
+                      {item.icon}
+                    </div>
+                    <div className="space-y-2 max-w-2xl">
+                      <h3 className="font-bold text-stone-900 text-lg">{item.nama}</h3>
+                      <p className="text-stone-500 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                )
+              }
+              return (
+                <div
+                  key={idx}
+                  className={`${item.span} ${item.padding} ${item.minHeight} bg-white border border-stone-200/60 rounded-2xl shadow-sm hover:translate-y-[-2px] transition-all duration-300 flex flex-col justify-between`}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center mb-6 shrink-0">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-stone-900 text-lg mb-1.5">{item.nama}</h3>
+                    <p className="text-stone-500 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
-                <p className="text-stone-800 font-semibold text-sm sm:text-base">{item}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>

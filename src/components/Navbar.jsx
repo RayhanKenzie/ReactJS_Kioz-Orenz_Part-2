@@ -73,7 +73,7 @@ function Navbar() {
           {/* Hamburger Menu Icon */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 transition-all duration-300 focus:outline-none"
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-orange-500 hover:bg-orange-50/50 transition-all duration-300 focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="Toggle Menu"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -102,12 +102,15 @@ function WaitingList() {
       queues = [newItem, ...queues]
       localStorage.setItem('kioz_orenz_waiting_list', JSON.stringify(queues))
 
+      const unit = kiosData.find((k) => k.id === parseInt(selectedUnit))
+      const unitLabel = unit ? `Kios Unit ${unit.nomor} (Lantai ${unit.lantai})` : `Kios Unit ${selectedUnit}`
+
       // Trigger Success Modal
       setModal({
         isOpen: true,
         type: 'success',
         title: 'Pendaftaran Berhasil!',
-        message: `Pendaftaran waiting list atas nama ${name} untuk Kios Unit ${selectedUnit} telah sukses terkirim. Pemilik Kioz Orenz akan segera menghubungi Anda.`
+        message: `Pendaftaran waiting list atas nama ${name} untuk ${unitLabel} telah sukses terkirim. Pemilik Kioz Orenz akan segera menghubungi Anda.`
       })
 
       // Reset Form Fields
@@ -194,7 +197,7 @@ function WaitingList() {
                 <option value="">-- Pilih Unit Kios --</option>
                 {kiosData.map((kios) => (
                   <option key={kios.id} value={kios.id}>
-                    Unit {kios.id} (Lantai {kios.lantai} - {kios.ukuran})
+                    Unit {kios.nomor} (Lantai {kios.lantai} - {kios.ukuran})
                   </option>
                 ))}
               </select>

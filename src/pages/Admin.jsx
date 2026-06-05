@@ -82,7 +82,7 @@ function Admin() {
         dateStr,
         q.name,
         q.phone,
-        `Unit ${q.unitId}`,
+        unit ? `Unit ${unit.nomor}` : `Unit ${q.unitId}`,
         floor,
         q.businessType,
         q.notes || '-'
@@ -289,7 +289,9 @@ function Admin() {
                   </thead>
                   <tbody className="divide-y divide-stone-100 text-stone-700">
                     {queues.map((q) => {
-                      const waLink = `https://wa.me/${q.phone.replace(/\D/g, '')}?text=Halo%20${encodeURIComponent(q.name)}%2C%20ini%20pemilik%20Kioz%20Orenz.%20Saya%20menerima%20pengajuan%20waiting%20list%20Anda%20untuk%20Kios%20Unit%20${q.unitId}.`
+                      const unit = kiosData.find((k) => k.id === q.unitId)
+                      const unitLabel = unit ? `Kios Unit ${unit.nomor} (Lantai ${unit.lantai})` : `Kios Unit ${q.unitId}`
+                      const waLink = `https://wa.me/${q.phone.replace(/\D/g, '')}?text=Halo%20${encodeURIComponent(q.name)}%2C%20ini%20pemilik%20Kioz%20Orenz.%20Saya%20menerima%20pengajuan%20waiting%20list%20Anda%20untuk%20${encodeURIComponent(unitLabel)}.`
                       return (
                         <tr key={q.id} className="hover:bg-stone-50/50 transition">
                           <td className="py-4.5 px-6 text-xs whitespace-nowrap text-stone-400">
@@ -312,8 +314,8 @@ function Admin() {
                             </a>
                           </td>
                           <td className="py-4.5 px-6">
-                            <span className="bg-orange-50 text-orange-850 text-[10px] font-extrabold px-2 py-0.5 rounded">
-                              Unit {q.unitId}
+                            <span className="bg-orange-50 text-orange-850 text-[10px] font-extrabold px-2 py-0.5 rounded whitespace-nowrap">
+                              {unit ? `Unit ${unit.nomor} (L${unit.lantai})` : `Unit ${q.unitId}`}
                             </span>
                           </td>
                           <td className="py-4.5 px-6 font-medium text-stone-800 text-xs">
