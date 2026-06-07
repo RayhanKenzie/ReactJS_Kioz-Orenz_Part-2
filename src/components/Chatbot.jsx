@@ -34,7 +34,7 @@ function Chatbot() {
 Informasi Valid Kioz Orenz (JANGAN MENGARANG LOKASI/HARGA):
 - Nama Properti: Kioz Orenz
 - Lokasi Alamat: Jalan Rawa Indah Raya, Depok
-- Kontak WhatsApp Pemilik: 085711404401
+- Kontak WhatsApp Pemilik: ${infoUmum.kontakWA || ''}
 - Harga Sewa: Rp 1.500.000 / bulan atau Rp 17.000.000 / tahun (hemat Rp 1.000.000 dibandingkan bayar bulanan).
 - Detail 4 Unit Kios:
   - Unit 1: Lantai 1, ukuran 3.5 × 3.5 m² (Tersedia)
@@ -44,14 +44,14 @@ Informasi Valid Kioz Orenz (JANGAN MENGARANG LOKASI/HARGA):
 - Fasilitas: Kamar mandi di dalam tiap unit kios, Daya listrik 900 Watt (sistem pulsa/token mandiri), Area parkiran motor, Air tanah bersih, Lokasi aman.
 - Keunggulan Lokasi: Dekat jalur Angkot 05 aktif 24 jam, Dekat rel KRL Jakarta–Bogor (dekat Stasiun Depok / Stasiun Citayam), Dekat Jalan Raya Citayam, Dekat pemukiman warga & perumahan cluster padat penduduk.
 - Catatan Kebijakan: TIDAK disewakan untuk usaha bengkel motor/mobil maupun las demi menjaga kebersihan & kenyamanan warga sekitar.
-- Cara Sewa: Hubungi pemilik via WA di 085711404401 atau isi form waiting list di website.
+- Cara Sewa: Hubungi pemilik via WA di ${infoUmum.kontakWA || ''} atau isi form waiting list di website.
 
 Tugas Anda:
 1. Anda adalah Kioz Orenz AI Assistant yang ramah, profesional, dan informatif.
 2. Jawab pertanyaan user berikut ini secara singkat, padat, dan akurat berdasarkan data di atas.
 3. Gunakan Bahasa Indonesia yang baik dan komunikatif.
 4. Jika user bertanya hal di luar data di atas, jawab dengan ramah bahwa Anda hanya memiliki informasi seputar kios Kioz Orenz.
-5. Jika ditanya cara menyewa, sarankan menghubungi WhatsApp pemilik di 085711404401.
+5. Jika ditanya cara menyewa, sarankan menghubungi WhatsApp pemilik di ${infoUmum.kontakWA || ''}.
 
 Pertanyaan User: `
 
@@ -72,16 +72,16 @@ Pertanyaan User: `
       return `Kioz Orenz terletak di Jalan Rawa Indah Raya, Depok. Lokasi sangat strategis dekat dengan jalur Angkot 05 (aktif 24 jam), rel KRL Jakarta-Bogor (dekat Stasiun Depok/Citayam), Jalan Raya Citayam, serta dikelilingi kompleks perumahan cluster padat penduduk.`
     }
     if (q.includes('kontak') || q.includes('wa') || q.includes('nomor') || q.includes('pemilik') || q.includes('telepon') || q.includes('hubung')) {
-      return `Anda bisa menghubungi pemilik Kioz Orenz langsung melalui WhatsApp di nomor 085711404401 untuk bertanya-tanya atau bernegosiasi seputar unit.`
+      return `Anda bisa menghubungi pemilik Kioz Orenz langsung melalui WhatsApp di nomor ${infoUmum.kontakWA || ''} untuk bertanya-tanya atau bernegosiasi seputar unit.`
     }
     if (q.includes('ukuran') || q.includes('lantai') || q.includes('dimensi') || q.includes('tipe') || q.includes('luas') || q.includes('meter')) {
       return `Terdapat 4 unit kios total:\n- Unit 1: Lantai 1, ukuran 3.5 × 3.5 m²\n- Unit 2: Lantai 2, ukuran 3.5 × 3.5 m²\n- Unit 3: Lantai 1, ukuran 3.5 × 4 m²\n- Unit 4: Lantai 2, ukuran 3.5 × 4 m²\nSemua unit saat ini berstatus tersedia.`
     }
     if (q.includes('survey') || q.includes('lihat') || q.includes('kunjung')) {
-      return `Tentu, Anda dipersilakan melakukan survey lokasi. Harap hubungi pemilik terlebih dahulu melalui WhatsApp di 085711404401 untuk membuat janji temu.`
+      return `Tentu, Anda dipersilakan melakukan survey lokasi. Harap hubungi pemilik terlebih dahulu melalui WhatsApp di ${infoUmum.kontakWA || ''} untuk membuat janji temu.`
     }
 
-    return `Terima kasih atas pertanyaan Anda! Untuk detail teknis sewa, negosiasi harga, dan survey unit, Anda dapat berdiskusi langsung dengan pemilik melalui WhatsApp di 085711404401.`
+    return `Terima kasih atas pertanyaan Anda! Untuk detail teknis sewa, negosiasi harga, dan survey unit, Anda dapat berdiskusi langsung dengan pemilik melalui WhatsApp di ${infoUmum.kontakWA || ''}.`
   }
 
   // Handle message sending
