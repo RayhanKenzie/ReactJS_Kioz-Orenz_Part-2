@@ -7,7 +7,7 @@ function Contact() {
   const mapSearchLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(infoUmum.lokasi + ', Depok')}`
 
   return (
-    <div className="min-h-screen bg-[#FFFBF5] py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#FCFBF4] py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
         
         {/* Header */}

@@ -28,12 +28,12 @@ function Admin() {
     }
   }
 
-  // Handle passcode verification
   const handleVerifyPasscode = (e) => {
     e.preventDefault()
     setErrorMsg('')
 
-    if (passcode === 'orenz123') {
+    const adminPasscode = import.meta.env.VITE_ADMIN_PASSCODE || 'orenz123'
+    if (passcode === adminPasscode) {
       setIsUnlocked(true)
       sessionStorage.setItem('kioz_orenz_admin_auth', 'true')
     } else {
@@ -173,7 +173,7 @@ function Admin() {
           </form>
           
           <div className="pt-2 text-[10px] text-stone-400">
-            Passcode default: <code className="bg-stone-50 border px-1 rounded font-mono">orenz123</code>
+            Passcode: <code className="bg-stone-50 border px-1 rounded font-mono">{import.meta.env.VITE_ADMIN_PASSCODE || 'orenz123'}</code>
           </div>
         </div>
       </div>

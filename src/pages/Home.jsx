@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { infoUmum } from '../data/kiosData'
 import heroBg from '../assets/kios-hero.jpg'
+import ctaBg from '../assets/black-and-orange-liquid-gradient-blend-blurred-noise-background.jpg'
 
 
 function Home() {
@@ -122,7 +123,7 @@ function Home() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#FFFBF5]">
+    <div className="min-h-screen bg-[#FCFBF4]">
       {/* Hero Section */}
       <section className="relative px-4 py-20 md:py-32 overflow-hidden text-white min-h-[550px] flex items-center">
         {/* Background Image with object-cover and object-center */}
@@ -143,7 +144,7 @@ function Home() {
             {/* Kolom Kiri (60%) */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-orange-600/20 text-orange-400 border border-orange-500/20 tracking-wide uppercase">
-                ⚡ Lokasi Strategis di Depok
+                Lokasi Strategis di Depok
               </span>
               
               <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
@@ -154,7 +155,7 @@ function Home() {
               </h1>
               
               <p className="text-base sm:text-lg text-stone-300 max-w-xl leading-relaxed font-light">
-                Ruang usaha premium, bersih, dan aman di Depok. Sangat ideal untuk ekspansi bisnis kuliner, jasa, kecantikan, maupun retail di kawasan padat penduduk.
+                Ruang usaha nyaman, bersih, dan aman di Depok. Sangat ideal untuk ekspansi bisnis kuliner, jasa, kecantikan, maupun retail di kawasan padat penduduk.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 items-center pt-2">
@@ -181,20 +182,20 @@ function Home() {
                 </h3>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="space-y-1">
-                    <p className="text-3xl font-extrabold text-orange-500">4</p>
+                    <p className="text-3xl font-extrabold text-orange-500">8</p>
                     <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Pilihan Kios</p>
                   </div>
                   <div className="space-y-1">
+                    <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Harga mulai dari</p>
                     <p className="text-3xl font-extrabold text-orange-500">Rp 1,5Jt</p>
-                    <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Mulai per Bulan</p>
                   </div>
                   <div className="space-y-1">
                     <p className="text-3xl font-extrabold text-orange-500">24 Jam</p>
-                    <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Akses Angkutan</p>
+                    <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Akses Angkutan Umum</p>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-3xl font-extrabold text-orange-500">900W</p>
                     <p className="text-[10px] text-stone-400 font-bold uppercase tracking-wider">Daya Listrik</p>
+                    <p className="text-3xl font-extrabold text-orange-500">900W</p>
                   </div>
                 </div>
               </div>
@@ -209,7 +210,7 @@ function Home() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-orange-600 font-bold text-xs uppercase tracking-widest">Keunggulan</span>
           <h2 className="text-3xl md:text-4xl font-extrabold mt-2 text-stone-900">
-            Lokasi Emas untuk Usaha Anda
+            Lokasi Strategis untuk Usaha Anda
           </h2>
           <p className="text-stone-500 mt-3.5 leading-relaxed text-sm sm:text-base">
             Terletak strategis di Depok dengan jangkauan transportasi publik dan area pemukiman yang padat, menjamin kestabilan arus konsumen potensial Anda.
@@ -240,7 +241,7 @@ function Home() {
       </section>
 
       {/* Fasilitas */}
-      <section className="px-4 py-20 bg-stone-100/50 border-y border-stone-200/50">
+      <section className="px-4 py-20 bg-[#F9FCF4] border-y border-orange-100/50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-orange-600 font-bold text-xs uppercase tracking-widest">Fasilitas</span>
@@ -401,7 +402,7 @@ function Home() {
       </section>
 
       {/* FAQ Accordion Section */}
-      <section className="px-4 py-20 bg-stone-100/50 border-t border-stone-200/50">
+      <section className="px-4 py-20 bg-[#F9FCF4] border-t border-orange-100/50">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-orange-600 font-bold text-xs uppercase tracking-widest">Tanya Jawab</span>
@@ -439,8 +440,13 @@ function Home() {
       </section>
 
       {/* CTA Final */}
-      <section className="relative px-4 py-20 bg-stone-900 text-white text-center overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <section 
+        className="relative px-4 py-24 bg-stone-900 text-white text-center overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${ctaBg})` }}
+      >
+        {/* Dark overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-stone-950/60 pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl pointer-events-none"></div>
         <div className="max-w-3xl mx-auto relative z-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
             Siap Memulai Bisnis Anda?
@@ -461,9 +467,7 @@ function Home() {
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg shadow-emerald-600/15 hover:shadow-emerald-600/25 transition-all duration-300 text-sm flex items-center justify-center gap-2 cursor-pointer"
             >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.333 4.99L2 22l5.233-1.371a9.936 9.936 0 0 0 4.779 1.21h.005c5.505 0 9.989-4.478 9.99-9.984 0-2.67-1.037-5.178-2.923-7.065C17.199 2.906 14.693 2 12.012 2zm5.836 14.199c-.32.898-1.579 1.649-2.181 1.706-.554.053-1.282.08-2.079-.174-.5-.16-1.127-.404-1.928-.745-3.411-1.455-5.61-4.936-5.782-5.163-.17-.228-1.38-1.84-1.38-3.513 0-1.674.87-2.502 1.182-2.839.311-.337.678-.42.905-.42.228 0 .454.001.651.01.2.01.468-.076.732.55.264.629.905 2.203.984 2.36.079.158.132.342.027.551-.105.21-.158.342-.317.525-.158.183-.332.41-.476.549-.16.158-.328.328-.142.645.186.317.828 1.358 1.776 2.202.193.172.368.326.52.443 1.218.934 1.921.802 2.224.47.302-.332 1.306-1.517 1.654-2.033.348-.517.697-.43.15-.175.547.256 3.473 1.637 4.076 1.938.603.302.82.382.946.597.127.215.127 1.234-.193 2.132z" />
-              </svg>
+              <img src="/WhatsApp.webp" alt="WhatsApp" className="w-5.5 h-5.5 object-contain" />
               Chat WhatsApp Pemilik
             </a>
           </div>

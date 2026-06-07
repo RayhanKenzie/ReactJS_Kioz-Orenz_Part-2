@@ -102,10 +102,16 @@ Pertanyaan User: `
     let botReplyText = ''
 
     if (apiKey && apiKey !== 'your_gemini_api_key_here') {
-      try {
-        const response = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
-          {
+      const endpoints = [
+        `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`
+      ]
+
+      let success = false
+      for (const url of endpoints) {
+        try {
+          const response = await fetch(url, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -121,17 +127,27 @@ Pertanyaan User: `
                 }
               ]
             })
+          })
+
+          if (response.ok) {
+            const data = await response.json()
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text
+            if (reply) {
+              botReplyText = reply
+              success = true
+              break
+            }
+          } else {
+            const errData = await response.json().catch(() => ({}))
+            console.warn(`Model at ${url.split('/models/')[1].split(':')[0]} failed with status ${response.status}:`, errData)
           }
-        )
-
-        if (!response.ok) {
-          throw new Error('API Request failed')
+        } catch (err) {
+          console.warn(`Failed to connect to ${url.split('/models/')[1].split(':')[0]}:`, err)
         }
+      }
 
-        const data = await response.json()
-        botReplyText = data.candidates?.[0]?.content?.parts?.[0]?.text || ''
-      } catch (err) {
-        console.error('Gemini API Error, falling back to local mock.', err)
+      if (!success) {
+        console.error('All Gemini API models failed or returned errors. Falling back to local mock.')
         botReplyText = getMockReply(text)
       }
     } else {

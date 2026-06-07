@@ -132,7 +132,7 @@ function WaitingList() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFFBF5] py-16 px-4 sm:px-6 lg:px-8 relative">
+    <div className="min-h-screen bg-[#FCFBF4] py-16 px-4 sm:px-6 lg:px-8 relative">
       <div className="max-w-3xl mx-auto">
         
         {/* Header */}

@@ -16,7 +16,7 @@ function Navbar() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 glassmorphism shadow-sm border-b border-orange-100/30">
+    <header className="sticky top-0 z-50 glassmorphism shadow-md border-b border-orange-100/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           
@@ -30,7 +30,7 @@ function Navbar() {
               <span className="font-bold text-xl tracking-tight text-gray-900 hover:text-orange-600 transition-colors duration-300">
                 Kioz <span className="text-orange-600 hover:text-gray-900 transition-colors duration-300">Orenz</span>
               </span>
-              <span className="block text-[10px] text-gray-400 font-medium -mt-1 tracking-wider uppercase">Sewa Kios Depok</span>
+              <span className="block text-[10px] text-gray-550 font-medium -mt-1 tracking-wider uppercase">Sewa Kios Depok</span>
             </div>
           </Link>
 

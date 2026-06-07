@@ -12,10 +12,8 @@ function Footer() {
           {/* Logo & Description */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg bg-orange-600 flex items-center justify-center">
-                <svg className="w-5.5 h-5.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img src="/public/kioz-orenz-logo.png" alt="Logo" className="text-white" />
               </div>
               <span className="font-bold text-lg tracking-tight text-white">
                 Kioz <span className="text-orange-500">Orenz</span>

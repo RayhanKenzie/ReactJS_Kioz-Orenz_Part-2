@@ -1,7 +1,7 @@
 export const infoUmum = {
   nama: "Kioz Orenz",
   lokasi: "Jalan Rawa Indah Raya, Depok",
-  kontakWA: "085711404401",
+  kontakWA: import.meta.env.VITE_OWNER_WHATSAPP || "085711404401",
   harga: {
     perBulan: 1500000,
     perTahun: 17000000,
