@@ -32,7 +32,7 @@ function Admin() {
     e.preventDefault()
     setErrorMsg('')
 
-    const adminPasscode = import.meta.env.VITE_ADMIN_PASSCODE || 'orenz123'
+    const adminPasscode = import.meta.env.VITE_ADMIN_PASSCODE
     if (passcode === adminPasscode) {
       setIsUnlocked(true)
       sessionStorage.setItem('kioz_orenz_admin_auth', 'true')
@@ -171,10 +171,6 @@ function Admin() {
               Buka Kunci
             </button>
           </form>
-          
-          <div className="pt-2 text-[10px] text-stone-400">
-            Passcode: <code className="bg-stone-50 border px-1 rounded font-mono">{import.meta.env.VITE_ADMIN_PASSCODE || 'orenz123'}</code>
-          </div>
         </div>
       </div>
     )
