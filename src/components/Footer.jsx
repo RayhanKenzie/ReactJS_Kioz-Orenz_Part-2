@@ -13,7 +13,7 @@ function Footer() {
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2.5">
               <div className="w-10 h-10 flex items-center justify-center">
-                <img src="/public/kioz-orenz-logo.png" alt="Logo" className="text-white" />
+                <img src="/kioz-orenz-logo.PNG" alt="Logo" className="text-white" />
               </div>
               <span className="font-bold text-lg tracking-tight text-white">
                 Kioz <span className="text-orange-500">Orenz</span>

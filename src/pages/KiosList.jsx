@@ -224,7 +224,7 @@ function KiosList() {
                     {/* Facilities Checklist */}
                     <ul className="grid grid-cols-2 gap-2 text-[11px] text-stone-600 mb-5 pb-5 border-b border-stone-100">
                       <li className="flex items-center gap-1.5">
-                        <span className="text-emerald-500 font-bold text-xs">✓</span> Mandi Dalam
+                        <span className="text-emerald-500 font-bold text-xs">✓</span> Kamar Mandi Dalam
                       </li>
                       <li className="flex items-center gap-1.5">
                         <span className="text-emerald-500 font-bold text-xs">✓</span> Listrik 900W

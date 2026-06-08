@@ -4,7 +4,7 @@ import mapImage from '../assets/map.jpg'
 
 function Contact() {
   const waLink = `https://wa.me/${infoUmum.kontakWA.replace(/\D/g, '')}?text=Halo%20Kioz%20Orenz%2C%20saya%20ingin%20berdiskusi%20mengenai%20proses%20penyewaan%20kios.`
-  const mapSearchLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(infoUmum.lokasi + ', Depok')}`
+  const mapSearchLink = `https://maps.app.goo.gl/EZ6ZAqkyLeFkdt6HA`
 
   return (
     <div className="min-h-screen bg-[#FCFBF4] py-16 px-4 sm:px-6 lg:px-8">
